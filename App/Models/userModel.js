@@ -29,7 +29,10 @@ const userSchema = new mongoose.Schema({
         required: true
       }
     }
-  ]
+  ],
+  avatar: {
+    type: Buffer
+  }
 });
 //virtual schema to store task created by users
 userSchema.virtual("tasks", {
