@@ -14,12 +14,17 @@ todoController.createTodo = async (req, res) => {
 // Find One Todo
 todoController.findTodo = async (req, res) => {
   const { params } = req;
+  console.log(params.id.length);
   try {
-    const todoItemData = await todoStore.findTodo({
-      _id: params.id,
-      owner: req.user._id
-    });
-    res.send(todoItemData);
+    if (params.id.length < 0) {
+      res.send("Please Provide Id");
+    } else {
+      const todoItemData = await todoStore.findTodo({
+        _id: params.id,
+        owner: req.user._id
+      });
+      res.send(todoItemData);
+    }
   } catch (e) {
     console.log(e);
   }
